@@ -15,6 +15,8 @@ class UsersController extends AppController
         $allUsers = $this->fetchTable('Users')->find()->all();
         $this->set("allUsers", $allUsers);
 
+       
+
         if ($this->request->is("post")) {
             $usersTable = $this->fetchTable('Users');
 

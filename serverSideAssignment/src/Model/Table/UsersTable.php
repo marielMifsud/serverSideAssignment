@@ -10,6 +10,7 @@ class UsersTable extends Table
     {
         $this->setDisplayField('user');
         $this->belongsToMany("Trades");
+        $this->belongsTo('Likes');
     }
 
    

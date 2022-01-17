@@ -12,45 +12,56 @@ class TradesController extends AppController
     public function index()
     {
         $allTrades = $this->fetchTable('Trades')->find()->contain(['Tickers'])->contain(['Users'])->all();
+        
         $this->set("allTrades", $allTrades);
-      
+
+        
+
 
         $tickersTable = $this->fetchTable('Tickers');
         $allTickers = $tickersTable->find('list')->toArray();
         $this->set("allTickers", $allTickers);
 
-        
+        $usersTable = $this->fetchTable('Users');
+        $allUsers = $usersTable->find()->toArray();
+        $this->set('allUsers', $allUsers);
 
-        if($this->request->is("post"))
-        {
+        $likesTable = $this->fetchTable('Likes');
+        $allLikes = $likesTable->find('list')->toArray();
+        $this->set('allLikes', $allLikes);
+
+
+     
+
+            
+
+      
+
+
+        if ($this->request->is("post")) {
             $tradesTable = $this->fetchTable('Trades');
             $newTrade = $tradesTable->newEntity($this->request->getData());
-            
+
             $attachment = $this->request->getData('attachment');
             $name = $attachment->getClientFileName();
-            $targetPath = WWW_ROOT.'img'.DS.$name;
+            $targetPath = WWW_ROOT . 'img' . DS . $name;
             $newTrade->image_name = $name;
             $attachment->moveTo($targetPath);
-           
-            
+
             $newTrade->user_id = $this->loggedInUser->id;
+
+            
             
 
-            if($tradesTable->save($newTrade))
-            {
+
+            if ($tradesTable->save($newTrade)) {
                 $this->Flash->success("Trade has been saved");
-                
+                //pr($this->request->getData());
+                //die;
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error("Trade was unsuccssful");
             }
         }
-
-       
-
-
-       
     }
 }
