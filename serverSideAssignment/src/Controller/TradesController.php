@@ -151,4 +151,17 @@ class TradesController extends AppController
 
 
     }
+
+    public function usertrades()
+    {
+        $allTrades = $this->fetchTable('Trades')->find()->contain(['Tickers'])->contain(['Users'])->all();
+        $this->set("allTrades", $allTrades);
+
+        
+        $name = $attachment->getClientFileName();
+            $targetPath = WWW_ROOT . 'img' . DS . $name;
+       
+
+
+    }
 }

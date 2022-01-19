@@ -57,7 +57,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/users/usertrades") ?>">My Trades</a>
+                            <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/trades/usertrades") ?>">My Trades</a>
                         </li>
                     <?php } ?>
 

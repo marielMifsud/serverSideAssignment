@@ -73,10 +73,7 @@ class UsersController extends AppController
         $this->set("allUsers" , $allUsers);
     }
 
-    public function usertrades()
-    {
-        
-    }
+   
 
 
 }

@@ -44,6 +44,8 @@ if (count($allTrades) > 0) {
 
             $owner_name = $trade->user->first_name . ' ' . $trade->user->last_name;
 
+            $image = $trade->image_name;
+
 
 
             echo '<div class="card mt-4" id="listTrades" style="width: 18rem; display:inline-block; padding:2px; margin-right: 5%;">';
@@ -56,8 +58,7 @@ if (count($allTrades) > 0) {
             echo '<p><b>Amount of shares:</b> ' . $trade->amount_of_shares . '</p>';
             echo '<p><b>Price bought:</b>' . $trade->price_bought . '</p>';
             echo '<p><b>Date:</b>' . date('dS F Y H:i', strtotime($trade->date)) . '</p>';
-            echo '<p><b>Image:</b></p>';
-            echo '<img src="./webroot/img/' . $trade->image_name . '"style="width: 200px ; height:200px">';
+    
 
 
             echo '<div style="width: 18rem; display:inline-block; margin-right: 5%;">';
