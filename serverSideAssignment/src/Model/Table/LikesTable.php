@@ -8,8 +8,8 @@ class LikesTable extends Table
 {
     public function initialize(array $config): void
     {
-        
-        $this->belongsTo("Trades");
+        $this->hasOne("Trades");
+        $this->hasOne("Users");
     }
 
    

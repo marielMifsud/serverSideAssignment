@@ -28,6 +28,7 @@ class AppController extends Controller
             $this->loggedInUser = $user;
             
         }
+
         
     }
 }

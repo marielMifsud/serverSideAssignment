@@ -10,7 +10,6 @@ class TradesTable extends Table
     {
         $this->belongsTo('Tickers');
         $this->belongsTo('Users');
-        $this->belongsTo('Likes');
         $this->addBehavior('Timestamp');
     }
 

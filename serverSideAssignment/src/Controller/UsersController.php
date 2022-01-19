@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use Cake\Log\Log;
 
 class UsersController extends AppController
 {
@@ -33,6 +34,7 @@ class UsersController extends AppController
 
     public function login()
     {
+        $ipAdrress = $_SERVER['REMOTE_ADDR'];
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
@@ -43,6 +45,7 @@ class UsersController extends AppController
                 'action' => 'index',
             ]);
     
+            Log::alert('Message: User Logged In, IP Address of user: '.$ipAdrress.' Email '.$this->loggedInUser->email . ' Current user logged in: ' .$this->loggedInUser->id, ['scope' => 'users']);
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed
@@ -53,11 +56,27 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $ipAdrress = $_SERVER['REMOTE_ADDR'];
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
         if ($result->isValid()) {
             $this->Authentication->logout();
+            Log::alert('Message: User Logged Out, IP Address of user: '.$ipAdrress.' Email '.$this->loggedInUser->email . ' Current user logging out: ' .$this->loggedInUser->id, ['scope' => 'users']);
             return $this->redirect(['controller' => 'Users', 'action' => 'login']);
         }
     }
+
+
+    public function showusers()
+    {
+        $allUsers = $this->fetchTable('Users')->find()->all();
+        $this->set("allUsers" , $allUsers);
+    }
+
+    public function usertrades()
+    {
+        
+    }
+
+
 }

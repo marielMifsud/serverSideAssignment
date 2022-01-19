@@ -49,19 +49,35 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/trades") ?>">Home</a>
                     </li>
+
+                    <?php if (isset($loggedInUser)) { ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/users/showusers") ?>">Users</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/users/usertrades") ?>">My Trades</a>
+                        </li>
+                    <?php } ?>
+
                     <?php if (!isset($loggedInUser)) { ?>
+
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/users/register") ?>">Register</a>
                         </li>
                     <?php } ?>
+
                     <?php if (isset($loggedInUser)) { ?>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/users/logout") ?>">Log Out</a>
                         </li>
                     <?php } else { ?>
+
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= $this->Url->build("/users/login") ?>">Log In</a>
                         </li>
+
                     <?php } ?>
 
 

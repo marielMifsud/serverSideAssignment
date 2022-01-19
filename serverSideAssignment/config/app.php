@@ -6,6 +6,7 @@ use Cake\Database\Driver\Mysql;
 use Cake\Error\ExceptionRenderer;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
+use Cake\Log\Log;
 
 return [
     /*
@@ -374,6 +375,22 @@ return [
             'url' => env('LOG_QUERIES_URL', null),
             'scopes' => ['queriesLog'],
         ],
+        'trades' => [
+            'className' => FileLog::class,
+            'path' => LOGS,
+            'file' => 'trades.log',
+            'url' => env('LOG_ERROR_URL', null),
+            'scopes' => ['trades'],
+            'levels' => ['info', 'critical', 'alert'],
+        ],
+        'users' => [
+            'className' => FileLog::class,
+            'path' => LOGS,
+            'file' => 'users.log',
+            'url' => env('LOG_ERROR_URL', null),
+            'scopes' => ['users'],
+            'levels' => ['info', 'critical', 'alert'],
+        ]
     ],
 
     /*
